@@ -17,6 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: povils/phpmnd
       - uses: nanasess/setup-php@v3.0.10
         with:
           php-version: ${{ matrix.php }}
@@ -31,8 +32,7 @@ jobs:
       - name: Install Dependencies
 
         if: steps.cache-composer.outputs.cache-hit != 'true'
-        run: |
-          composer config http-basic.satis.laravel-enlightn.com "$ENLIGHTN_USERNAME" "$ENLIGHTN_API_TOKEN"
+        run:
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: phpmnd
