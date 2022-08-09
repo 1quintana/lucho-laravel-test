@@ -13,12 +13,12 @@ jobs:
       matrix:
         php: ['8.1']
 
-    name: PHP CS Fixer @ PHP ${{ matrix.php }}
+    name: Magic Numbers @ PHP ${{ matrix.php }}
 
     steps:
       - uses: actions/checkout@v2
-
       - uses: nanasess/setup-php@v3.0.10
+      - uses: povils/phpmnd
         with:
           php-version: ${{ matrix.php }}
 
@@ -30,14 +30,12 @@ jobs:
           key: cache-composer-${{ matrix.php }}-${{ hashFiles('composer.json') }}-${{ hashFiles('composer.lock') }}
 
       - name: Install Dependencies
-        env:
-          ENLIGHTN_USERNAME: ${{ secrets.ENLIGHTN_USERNAME }}
-          ENLIGHTN_API_TOKEN: ${{ secrets.ENLIGHTN_API_TOKEN }}
+
         if: steps.cache-composer.outputs.cache-hit != 'true'
         run: |
           composer config http-basic.satis.laravel-enlightn.com "$ENLIGHTN_USERNAME" "$ENLIGHTN_API_TOKEN"
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Run php-cs-fixer
-        id: phpcsfixer-run
-        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php-cs-fixer.php
+      - name: phpmnd
+        id: phpmnd-run
+        run: ./vendor/bin/phpmnd --exclude-path=storage --exclude=tests --ignore-funcs=for --progress .
