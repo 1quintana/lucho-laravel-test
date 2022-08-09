@@ -1,7 +1,7 @@
 name: Automated Checks
 
 on:
-  pull_request:
+  push:
     branches: [develop, master]
 
 jobs:
