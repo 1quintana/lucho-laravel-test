@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('lucho-test', function(){
     $luchoTest = 'someText';
-    if($luchoTest === 3){
+    if($luchoTest === 4){
         echo "Magic Numbers not allowed";
     }
 });
