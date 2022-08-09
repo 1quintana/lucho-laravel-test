@@ -2,7 +2,7 @@ name: Automated Checks
 
 on:
   pull_request:
-    [develop, master, release**]
+    branches: [develop, master]
 
 jobs:
   phpmnd:
@@ -17,7 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: povils/phpmnd
       - uses: nanasess/setup-php@v3.0.10
         with:
           php-version: ${{ matrix.php }}
@@ -30,9 +29,12 @@ jobs:
           key: cache-composer-${{ matrix.php }}-${{ hashFiles('composer.json') }}-${{ hashFiles('composer.lock') }}
 
       - name: Install Dependencies
-
+        env:
+          ENLIGHTN_USERNAME: ${{ secrets.ENLIGHTN_USERNAME }}
+          ENLIGHTN_API_TOKEN: ${{ secrets.ENLIGHTN_API_TOKEN }}
         if: steps.cache-composer.outputs.cache-hit != 'true'
-        run:
+        run: |
+          composer config http-basic.satis.laravel-enlightn.com "$ENLIGHTN_USERNAME" "$ENLIGHTN_API_TOKEN"
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: phpmnd
