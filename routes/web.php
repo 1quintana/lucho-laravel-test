@@ -17,4 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('lucho-test', function(){
+    $luchoTest = 'someText';
+    if($luchoTest === 4){
+        echo "Magic Numbers not allowed";
+    }
+});
+
 
