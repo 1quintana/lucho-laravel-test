@@ -23,5 +23,3 @@ Route::get('lucho-test', function(){
         echo "Magic Numbers not allowed";
     }
 });
-
-
