@@ -40,7 +40,7 @@ jobs:
       - name: phpmnd
         id: phpmnd-run
         run: ./vendor/bin/phpmnd \
-        --exclude-path=storage \
-        --exclude=tests \
-        --ignore-funcs=for \
-        --progress .
+          --exclude-path=storage \
+          --exclude=tests \
+          --ignore-funcs=for \
+          --progress .
