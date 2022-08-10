@@ -37,7 +37,7 @@ jobs:
           composer config http-basic.satis.laravel-enlightn.com "$ENLIGHTN_USERNAME" "$ENLIGHTN_API_TOKEN"
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: checking-magic-numbers
+      - name: Checking Magic Numbers
         id: checking-magic-numbers-run
         run: ./vendor/bin/phpmnd \
           --exclude-path=storage \
