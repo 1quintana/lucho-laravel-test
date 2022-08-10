@@ -13,6 +13,9 @@ class ExampleTest extends TestCase
      */
     public function test_that_true_is_true()
     {
+        if("notallowed"=== 2){
+            echo "This will never happen";
+        }
         $this->assertTrue(true);
     }
 }
