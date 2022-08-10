@@ -2,7 +2,7 @@ name: Automated Checks
 
 on:
   push:
-    branches: [develop, master]
+    branches: [develop, master, release**]
 
 jobs:
   phpmnd:
