@@ -39,9 +39,4 @@ jobs:
 
       - name: Checking Magic Numbers
         id: checking-magic-numbers-run
-        run: ./vendor/bin/phpmnd \
-          --exclude-path=storage \
-          --exclude=tests \
-          --ignore-funcs=for \
-          --exclude-file=web.php \
-          --progress .
+        run: ./vendor/bin/phpmnd --exclude-path=storage --exclude=tests --ignore-funcs=for --exclude-file=web.php --progress .
