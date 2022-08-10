@@ -5,7 +5,7 @@ on:
     branches: [develop, master, release**]
 
 jobs:
-  phpmnd:
+  checking-magic-numbers:
     runs-on: ubuntu-latest
 
     strategy:
@@ -43,5 +43,5 @@ jobs:
           --exclude-path=storage \
           --exclude=tests \
           --ignore-funcs=for \
-          --exclude-file=web.php \
+          --exclude-file=/routes/web.php \
           --progress .
